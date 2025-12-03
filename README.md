@@ -10,7 +10,8 @@ the `node_modules` have not been uploaded.
 
   create-react-app todolist
 
-```
+```trigger
+
 
 replace the public and src folders with those in this repo. 
 ```
