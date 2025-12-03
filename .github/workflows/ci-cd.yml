@@ -24,7 +24,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/react-todo-app:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/todo-react-cdn:latest
 
   deploy:
     name: Deploy to remote server via SSH
@@ -40,8 +40,8 @@ jobs:
       - name: Deploy on server
         run: |
           ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_IP }} "
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/react-todo-app:latest &&
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/todo-react-cdn:latest &&
             docker stop todo || true &&
             docker rm todo || true &&
-            docker run -d --name todo -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/react-todo-app:latest
+            docker run -d --name todo -p 80:80 ${{ secrets.DOCKERHUB_USERNAME }}/todo-react-cdn:latest
           "
